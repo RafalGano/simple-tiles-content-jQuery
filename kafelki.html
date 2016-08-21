@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>kafelki</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <style type="text/css">
+    body{
+      font-family: 'Open Sans', sans-serif;
+    }
+    #tiles{
+      margin: 0 auto;
+      max-width: 300px;
+    }
+    .tile {
+      background: #ddd;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      text-align: center;
+    }
+    .content{
+      line-height: 7;
+    }
+
+    .content .first-layer {
+      display: block;
+    }
+    .content .second-layer {
+      display: none;
+    }
+
+    .content.active .first-layer {
+      display: none;
+      background: pink;
+    }
+    .content.active .second-layer {
+      display: block;
+      animation-name: displayNoneBlockTransition;
+      animation-duration: 1s;
+    }
+
+    @keyframes displayNoneBlockTransition {
+      0% {
+        display: none;
+        opacity: 0;
+      }
+      1% {
+        display: block;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+  <div id="tiles">
+     <div class="tile">
+       <div class="content">
+         <div class="first-layer">the default text 1 </div>
+         <div class="second-layer">shows when you move 1</div>
+       </div>
+     </div>
+
+     <div class="tile">
+        <div class="content">
+          <div class="first-layer">the default text 2 </div>
+          <div class="second-layer">shows when you move 2</div>
+        </div>
+     </div>
+
+     <div class="tile">
+        <div class="content">
+          <div class="first-layer">the default text 3 </div>
+          <div class="second-layer">shows when you move 3</div>
+        </div>
+     </div>
+  </div>
+
+
+<script>
+  $('#tiles .tile').each(function(){
+    var _this = $(this);
+
+    _this.mouseenter(function(){
+      $('.content').not(this).removeClass('active');
+      _this.find('.content').toggleClass('active');
+    });
+
+    _this.mouseleave(function(){
+      $('.content').removeClass('active');
+    });
+  });
+</script>
+
+</body>
+</html>
